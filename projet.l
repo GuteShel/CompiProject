@@ -31,7 +31,7 @@ var		{printf("variable"); return VAR;}
 language	{printf("language"); return LANG;}
 function	{printf("function"); return FUNC;}
 return		{printf("return"); return RET;}
-begin		{printf("begin"); return START;}
+begin		{printf("begin"); return BEGIN;}
 end		{printf("end"); return END;}
 if		{printf("if"); return IF;}
 while		{printf("while"); return WHILE;}
