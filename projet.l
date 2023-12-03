@@ -5,7 +5,6 @@
 
 
 %option noyywrap
-// these here are the basic declarations, they will help us facilitate working
 
 idf 		^(?!.*__).char?\w{0,10}(?<!_)$ // identifier of the thing
 char		[a-zA-Z] // characters
@@ -16,10 +15,6 @@ bool		{"true"|"false"} // bool
 
 %%
 
-// the [return TOKEN] part will be reported as an error by GCC, because we didn't include the projet.y (bison file) yet, the tokens are still unknown!
-// the code will firstly print the token read, THEN return, i made it this way to facilitate the work for us
-
-// variables and types
 int 		{printf("number"); return INT} // when detecting an integer, return INT,
 float	 	{printf("float number"); return FLOAT;}
 bool 		{printf("bool"); return BOOL;}
@@ -29,12 +24,10 @@ idf 		{printf("identifier"); return IDF}
 = 		{printf("assign"); return ASSIGN;} 
 var		{printf("variable"); return VAR;}
 
-// seperations
 , 		{printf("comma"); return COMMA;}
 ; 		{printf("semicolon"); return SEMICOLON;}
 :		{printf("colon"); return COLON;}
 
-// further complex 
 language	{printf("language"); return LANG;}
 function	{printf("function"); return FUNC;}
 return		{printf("return"); return RET;}
@@ -54,7 +47,6 @@ while		{printf("while"); return WHILE;}
 "("		{printf("left parentheses"); return LEFT_PAR;}
 ")"		{printf("right parentheses"); return RIGHT_PAR;}
 
-// handling spaces and newlines
 [ \t] 		// ignore whitespace 
 \n		{nbl++;}
 .		printf("erreur a la ligne%d\n", nbl);
