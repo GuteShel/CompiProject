@@ -1,4 +1,5 @@
 # CompiProject
+# FLEX
 I will include the code here, 
 If you want to edit our code, then **create a new branch**, do your edits there, and then do a **pull request** and i will accept it inshallah
 ## COMMENTS ON FLEX FILE
@@ -15,3 +16,24 @@ First: the variables and definitions
 Secondly: the seperators
 Thirdly: complex entities
 Forthly: spaces and newlines 
+
+# BISON
+## TOKENS
+Tokens are terminals
+Tokens can be writen in either forms: %token TOKEN1 TOKEN2 TOKEN3 ... TOKENn
+or : 
+%token TOKEN1
+%token TOKEN2
+%token TOKEN3
+...
+%token TOKENn
+
+## UNION
+It sets the data type of tokens
+
+## START
+%start defines the starting rule, in other words: l'axiom S
+
+## RULES 
+Rules are non-terminal
+The starting rule is **program**
