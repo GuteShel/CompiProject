@@ -1,44 +1,42 @@
 %{
 	#include <stdio.h>
+	#include <stdbool.h>
 %}
 
+%token <char[10]> IDF // because the idf can be 10 characters long
 
+%token <float> FLOAT
+%token <int> INT
+%token <bool> BOOL
+%token <char[5]> TYPE
 
-
-%token <string> IDF
-
-%token FLOAT
-%token INT
-%token BOOL
-%token TYPE
-
-%token INT_CONST
-%token FLT_CONST
+%token <int> INT_CONST
+%token <float> FLT_CONST
 %token CONST
 
-%token COMMA
-%token COLON
-%token SEMICOLON
-%token ASSIGN
+%token <char> COMMA
+%token <char> COLON
+%token <char> SEMICOLON
+%token <char> ASSIGN
 
-%token EQUAL
-%token GTR
-%token GTE
-%token LT
-%token LE
-%token ADD
-%token SUB
-%token MULT
-%token DIV
+%token <char> EQUAL
+%token <char> GTR
+%token <char> GTE
+%token <char> LT
+%token <char> LE
+%token <char> ADD
+%token <char> SUB
+%token <char> MULT
+%token <char> DIV
 
-%token LANG
-%token FUNC
-%token RET
-%token VAR
-%token START
-%token END
-%token IF
-%token WHILE
+%token <char[10]> LANG
+%token <char[10]> FUNC
+%token <char[6]> RET // = return
+%token <char> VAR
+%token <char[5]> BEGIN
+%token <char[3]> END
+%token <char[2]> IF
+%token <char[5]> WHILE
 
 %union {
 	// take in numbers
@@ -49,5 +47,18 @@
 	bool value;
 	
 	// take in the symbols, keywords and variables
-	char* word;
+	const char[10] word; // to avoid memory managment for the pointer...
 }
+
+%start program
+
+%%
+program	: BEGIN code END
+	;
+
+code	: declarations comment | declaration comment | affectation comment | for comment | if comment 
+	;
+
+comment	: div div | 
+	;
+
